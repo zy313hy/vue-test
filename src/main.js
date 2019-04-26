@@ -3,13 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Header from './components/Header/Header'
+import store from './store'
 
 Vue.config.productionTip = false
-
+Vue.component('Header',Header)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+  router, // 配置路由器
+  // components: { App },
+  render: h => h(App),
+  store,
 })

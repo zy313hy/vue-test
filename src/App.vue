@@ -8,6 +8,9 @@
 <script>
 import FooterGuide from './components/FooterGuide'
 export default {
+  async mounted(){
+    this.$store.dispatch('getAdress')
+  },
  components:{
    FooterGuide
   }
