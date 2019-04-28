@@ -15,7 +15,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" type="text/stylus" scoped>
-  .search  //搜索
+  .search //搜索
+    overflow hidden
     width 100%
     .search_form
       clearFix()

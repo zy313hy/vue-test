@@ -1,17 +1,16 @@
 <template>
   <section class="profile">
 
-    <Header title="我的" >
-      <span slot="left" class="iconfont icon-jiantou leftback "></span>
+    <Header title="我的">
     </Header>
 
-    <section class="profile-number" >
+    <section class="profile-number" @click="$router.push(user._id ? '/userself' : '/login')" >
       <a href="javascript:" class="profile-link">
         <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
-        <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+        <div class="user-info" >
+          <p class="user-info-top">{{user.name?user.name:'登录/注册'}}</p>
           <p>
                 <span class="user-icon">
                   <i class="iconfont icon-shouji icon-mobile"></i>
@@ -92,18 +91,38 @@
         </div>
       </a>
     </section>
+    <mt-button type="danger"style="width: 100%" v-if="user._id" @click="logout">退出登录</mt-button>
   </section>
 </template>
 
 <script>
+  //import MtButton from "../../../node_modules/mint-ui/packages/button/src/button.vue"
+  import { MessageBox } from 'mint-ui';
+  import {mapState} from 'vuex'
+
   export default {
-    name: ""
+    //components: {MtButton},
+    computed:{
+      ...mapState(['user'])
+    },
+    methods:{
+      logout () {
+        MessageBox.confirm('确定退出登陆吗?').then(action => {
+          console.log('确定')
+          this.$store.dispatch('logout')
+        }, action => {
+          console.log('取消')
+        });
+      }
+    }
+
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" type="text/stylus" scoped>
   @import "../../commom/stylus/mixins.styl"
   .profile //我的
+    overflow hidden
     Header
       >span
         padding-top 50px

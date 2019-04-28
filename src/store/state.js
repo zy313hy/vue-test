@@ -8,4 +8,8 @@ export default {
   address:{},
   shops:[],
   categorys:[],
+  user:{},
+  goods: [], // 商品列表
+  ratings: [], // 商家评价列表
+  info: {}, // 商家信
 }

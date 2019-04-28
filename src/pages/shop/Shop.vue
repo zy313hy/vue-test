@@ -5,8 +5,8 @@
       <span class="header_search" slot="left">
         <i class="iconfont icon-search1"></i>
       </span>
-      <span class="header_login" slot="right">
-        <span class="header_login_text">登录|注册</span>
+      <span class="header_login" slot="right" >
+        <span class="header_login_text" @click="$router.push(user._id ? '/userself' : '/login')">{{user._id ? '个人中心' : '登录|注册'}}</span>
       </span>
     </Header>
     <!--首页导航-->
@@ -46,7 +46,7 @@
     mounted() {
       this.$store.dispatch('getShops')
       this.$store.dispatch('getCategorys')
-      this.$store.dispatch('getAddress')
+      // this.$store.dispatch('getAddress')
       // 创建时机: 在数据页面显示之后创建
       // new Swiper('.swiper-container', {
       //   loop: true, // 循环模式选项
@@ -61,7 +61,7 @@
       ShopList
     },
     computed: {
-      ...mapState(['address', 'categorys']),
+      ...mapState(['address', 'categorys','user']),
       /*
       根据categorys生成二维数组
       小数组最大长度是8
